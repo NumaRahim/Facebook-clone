@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Facebook Login Clone</title>
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h1>facebook</h1>
+      <p>Connect with friends and the world around you on Facebook.</p>
+      <form id="loginForm">
+        <input type="text" id="email" placeholder="Email or Phone Number" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <label class="remember-me">
+          <input type="checkbox" id="rememberMe"> Remember Me
+        </label>
+        <button type="submit">Log In</button>
+      </form>
+      
+      <div id="errorMessage" class="error-message"></div>
+      <a href="#" class="forgot-password">Forgot Password?</a>
+      <hr>
+      <button class="create-account">Create New Account</button>
+    </div>
+  </div>
+
+  <script>
+    users = [
+      { email: 'numaali', password: 'numa moiz ali', name: 'Numa Ali' }
+    ];
+
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault(); 
+
+      email = document.getElementById('email').value;
+      password = document.getElementById('password').value;
+      rememberMe = document.getElementById('rememberMe').checked;
+
+      errorMessage = document.getElementById('errorMessage');
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        
+        errorMessage.textContent = '';
+        errorMessage.style.display = 'none';
+
+        window.location.href = "dashboard.html"; 
+      } else {
+        
+        errorMessage.textContent = 'Invalid email or password. Please try again.';
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
